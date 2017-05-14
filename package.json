@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/hartbeatnt/particle-playground/issues"
   },
-  "homepage": "https://github.com/hartbeatnt/particle-playground#readme"
+  "homepage": "https://github.com/hartbeatnt/particle-playground#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "three": "^0.85.2"
+  }
 }
