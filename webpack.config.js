@@ -6,7 +6,14 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/public/",
+    publicPath: "/dist/",
     filename: "bundle.js"
-  }
+  },
+  module: {
+      loaders: [
+          { test: /\.css$/, loader: "style!css" }
+      ]
+  },
+  devtool: 'source-maps',
+  watch: true,
 };
