@@ -1,12 +1,16 @@
-const THREE = require('three');
-const CONTAINER = document.querySelector('#container')
-let CONTAINER_W = container.offsetWidth;
-let CONTAINER_H = container.offsetHeight;
-window.addEventListener('resize',()=>{
-  CONTAINER_W = container.offsetWidth;
-  CONTAINER_H = container.offsetHeight;
-})
+const THREE = require('three')
+import Keyboard from './Keyboard';
+import Scene from './Scene';
 
-const particleScene = {
+const container = document.querySelector('#container')
+const keyboard = new Keyboard();
 
-}
+const scene = new Scene(container);
+scene.render()
+
+// const particleScene = {
+//   container_W = container.offsetWidth,
+//   container_H = container.offsetHeight,
+
+//   scene, camera, renderer,
+// }
