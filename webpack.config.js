@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    app: ["./dev/app.js"]
+    app: [path.resolve(__dirname, "dev/app.js")],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -10,9 +10,17 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
-      loaders: [
-          { test: /\.css$/, loader: "style!css" }
-      ]
+    loaders: [
+      { test: /\.css$/, loader: "style!css" },
+      {
+        test: /.jsx?$/,
+        loader: 'babel-loader',
+        include: path.resolve(__dirname, "dev"),
+        query: {
+          presets: ['es2015', 'stage-0']
+        }
+      }
+    ]
   },
   devtool: 'source-map',
   watch: true,

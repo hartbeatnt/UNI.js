@@ -4,13 +4,8 @@ import Scene from './Scene';
 
 const container = document.querySelector('#container')
 const keyboard = new Keyboard();
+const sceneSettings = { renderer: {clearColor: "#24f46a"} }
 
-const scene = new Scene(container);
+const scene = new Scene(container, sceneSettings);
 scene.render()
 
-// const particleScene = {
-//   container_W = container.offsetWidth,
-//   container_H = container.offsetHeight,
-
-//   scene, camera, renderer,
-// }
