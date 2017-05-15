@@ -1,23 +1,21 @@
 class Keyboard {
   constructor() {
-    Array.from(arguments).forEach(key=>{
-      this[key] = false;
-    })
-    window.addEventListener('keydown', (e)=>{
+    [...arguments].forEach(key => this.addKey(key))
+
+    window.addEventListener('keydown', e => {
       if (e.key in this) this[e.key] = true;
     })
-    window.addEventListener('keyup', (e)=>{
+    window.addEventListener('keyup', e =>{ 
       if (e.key in this) this[e.key] = false;  
     })
   }
-  addKeys() {
-    Array.from(arguments).forEach(key=>{
-      console.log(key)
-      this[key] = false;
+  addKey() {
+    [...arguments].forEach(key => {
+      if (typeof key === 'string') this[key] = false
     })    
   }
-  addKey() {
-    this.addKeys.apply(this, arguments)
+  addKeys() {
+    this.addKey.apply(this, arguments)
   }
 }
 

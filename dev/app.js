@@ -3,9 +3,11 @@ import Keyboard from './Keyboard';
 import Scene from './Scene';
 
 const container = document.querySelector('#container')
-const keyboard = new Keyboard();
 const sceneSettings = { renderer: {clearColor: "#24f46a"} }
 
-const scene = new Scene(container, sceneSettings);
-scene.render()
-
+const particles = new Scene(container, sceneSettings);
+particles.animate = time => {
+  requestAnimationFrame(particles.animate);
+  particles.render();
+}
+particles.animate(performance.now)
