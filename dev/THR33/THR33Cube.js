@@ -9,7 +9,7 @@ const defaultOptions = {
 }
 
 class THR33Cube {
-  constructor(options) {
+  constructor(options={}) {
     options = {...defaultOptions, ...options};
     let geometry = new THREE.BoxBufferGeometry(
       options.size, options.size, options.size
