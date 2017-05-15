@@ -7,10 +7,9 @@ const container = document.querySelector('#container')
 const sceneSettings = { clearColor: "#24f46a"} 
 
 const THR33 = new THR33Scene(container, sceneSettings);
-const cube = new THR33Cube()
-console.log(cube)
+const cube = new THR33Cube();
 
-THR33.scene.add(cube.el)
+THR33.scene.add(cube.el);
 
 const animate = time => {
   requestAnimationFrame(animate);
