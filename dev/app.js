@@ -1,13 +1,20 @@
 const THREE = require('three')
 import Keyboard from './Keyboard';
-import Scene from './Scene';
+import THR33Scene from './THR33/THR33Scene';
+import THR33Cube from './THR33/THR33Cube';
 
 const container = document.querySelector('#container')
-const sceneSettings = { renderer: {clearColor: "#24f46a"} }
+const sceneSettings = { clearColor: "#24f46a"} 
 
-const particles = new Scene(container, sceneSettings);
-particles.animate = time => {
-  requestAnimationFrame(particles.animate);
-  particles.render();
+const THR33 = new THR33Scene(container, sceneSettings);
+const cube = new THR33Cube()
+console.log(cube)
+
+THR33.scene.add(cube.el)
+
+const animate = time => {
+  requestAnimationFrame(animate);
+  THR33.render();
 }
-particles.animate(performance.now)
+
+animate(performance.now)
