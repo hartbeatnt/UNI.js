@@ -1,20 +1,30 @@
-const THREE = require('three')
+const THREE = require('three');
+const CANNON = require('cannon');
 import Keyboard from './Keyboard';
-import THR33Scene from './THR33/THR33Scene';
-import THR33PartSys from './THR33/THR33PartSys';
+import THR33PhysScene from './THR33/THR33PhysScene';
+import THR33PhysCube from './THR33/THR33PhysCube'
+import THR33PartSys from './THR33/THR33PartSys';;
 
 const container = document.querySelector('#container')
-const sceneSettings = { clearColor: "#24f46a"} 
+const sceneSettings = { 
+  clearColor: "#24f46a",
+} 
 
-const THR33 = new THR33Scene(container, sceneSettings);
+const THR33 = new THR33PhysScene(container, sceneSettings);
 const partSys = new THR33PartSys();
+const cube = new THR33PhysCube({
+  position: {x:0,y:1.5,z:0},
+  mass: 1,
+  size: 0.5,
+  // velocity: new CANNON.Vec3(0.0, -1.0, 0.0),
+});
 
-THR33.scene.add(partSys.el)
-
+THR33.addEntity(partSys)
+THR33.addPhysEntity(cube)
 const animate = time => {
   requestAnimationFrame(animate);
-
-  THR33.render();
+  
+  THR33.render(deltaTime);
 }
 
 let oldTime = performance.now();

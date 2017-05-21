@@ -17,30 +17,31 @@ const defaultOptions = {
 
 class THR33Scene {
   constructor(domNode,options={}) {
+    options = {...defaultOptions, ...options}
     let w = domNode.offsetWidth;
     let h = domNode.offsetHeight;
-    options = {...defaultOptions, ...options}
-    this.domNode = domNode;
-    this.scene = new THREE.Scene();
+    this.entities = [];
+    this.renderer = new THREE.WebGLRenderer(options.renderParams);
+    this.renderer.setSize(w, h);
+    this.renderer.setClearColor(options.clearColor);
     this.camera = new THREE.PerspectiveCamera(
       options.fov, 
       options.aspect || w/h, 
       options.nearClip, 
       options.farClip
     );
-    this.renderer = new THREE.WebGLRenderer(options.renderParams);
     this.camera.position.x = options.position.x;
     this.camera.position.y = options.position.y;
     this.camera.position.z = options.position.z;
-    this.renderer.setSize(w, h);
-    this.renderer.setClearColor(options.clearColor);
+    
+    this.scene = new THREE.Scene();
     
     window.addEventListener('resize',()=>{
       options.aspect
-        ? this.setSize(this.domNode, options.aspect)
-        : this.setSize(this.domNode);
+        ? this.setSize(domNode, options.aspect)
+        : this.setSize(domNode);
     })
-    this.domNode.appendChild(this.renderer.domElement);
+    domNode.appendChild(this.renderer.domElement);
   }
 
   setSize(domNode, aspect=false) {
@@ -49,6 +50,10 @@ class THR33Scene {
     this.camera.aspect = aspect || w / h;
     this.camera.updateProjectionMatrix();
 	  this.renderer.setSize(w, h);
+  }
+
+  addEntity(entity) {
+    this.scene.add(entity.el);
   }
 
   render() {
