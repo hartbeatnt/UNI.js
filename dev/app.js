@@ -19,7 +19,9 @@ const mouseDetect = new MouseDetect(universe);
 const partSys = new UNIPartSys();
 const cube = new UNIPhysCube({
   components: {
-    onMouseOver: ()=> console.log('mouse over cube')
+    onMouseEnter: ()=>console.log('mouse enter cube'),
+    onMouseOver: ()=> console.log('mouse over cube'),
+    onMouseExit: ()=>console.log('mouse exit cube'),
   },
   position: {x:0,y:1.5,z:-1},
   mass: 1,
