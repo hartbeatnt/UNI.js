@@ -25,7 +25,6 @@ class THR33PhysScene extends THR33Scene {
     this.world.solver.iterations = options.solverIterations;
     this.interpolation = options.interpolation;
     this.timeStep = options.timeStep;
-    console.log(this.world)
   }
   addPhysEntity(entity) {
     this.physEntities.push(entity);

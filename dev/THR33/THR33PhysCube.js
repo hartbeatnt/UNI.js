@@ -5,6 +5,7 @@ const defaultOptions = {
     mass: 1,
     angularDamping: 0,
     velocity: { x: 0, y: 0, z: 0 },
+    angularVelocity:  { x: 0, y: 0, z: 0 },
 };
 
 class THR33PhysCube extends THR33Cube {
@@ -25,11 +26,16 @@ class THR33PhysCube extends THR33Cube {
       options.position.x,
       options.position.y,
       options.position.z        
-    )
+    );
     this.body.velocity = new CANNON.Vec3(
         options.velocity.x,
         options.velocity.y,
         options.velocity.z,
+    );
+    this.body.velocity = new CANNON.Vec3(
+        options.angularVelocity.x,
+        options.angularVelocity.y,
+        options.angularVelocity.z,
     );
     this.body.angularDamping = options.angularDamping;
   }

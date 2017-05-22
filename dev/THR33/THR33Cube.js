@@ -5,7 +5,8 @@ const defaultOptions = {
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
   scale:    { x: 1, y: 1, z: 1 },
-  material: new THREE.MeshBasicMaterial({color: 0xD3D3D3})
+  color: 0xD3D3D3,
+  material: null,
 }
 
 class THR33Cube {
@@ -14,7 +15,9 @@ class THR33Cube {
     let geometry = new THREE.BoxBufferGeometry(
       options.size, options.size, options.size
     );
-    let mesh = new THREE.Mesh(geometry, options.material);
+    let material = options.material
+      || new THREE.MeshBasicMaterial({color: options.color});
+    let mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(
       options.position.x,
       options.position.y,
