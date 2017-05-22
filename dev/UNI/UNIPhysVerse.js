@@ -1,5 +1,5 @@
 const CANNON = require('cannon')
-import THR33Scene from './THR33Scene'
+import UNIVerse from './UNIVerse'
 
 const defaultOptions = {
   physEntities: [],
@@ -10,9 +10,10 @@ const defaultOptions = {
   timeStep: 1/60,
 }
 
-class THR33PhysScene extends THR33Scene {
+class UNIPhysVerse extends UNIVerse {
   constructor(domNode,options={}) {
     super(domNode, options);
+    console.log('sync or nah?')
     options = {...defaultOptions, ...options}
     this.physEntities = options.physEntities
     this.world = new CANNON.World();
@@ -28,7 +29,7 @@ class THR33PhysScene extends THR33Scene {
   }
   addPhysEntity(entity) {
     this.physEntities.push(entity);
-    this.scene.add(entity.el);
+    this.scene.add(entity.mesh);
     this.world.addBody(entity.body);
   }
   updatePhysics() {
@@ -45,4 +46,4 @@ class THR33PhysScene extends THR33Scene {
 
 }
 
-export default THR33PhysScene; 
+export default UNIPhysVerse; 

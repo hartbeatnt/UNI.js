@@ -1,5 +1,5 @@
 const CANNON = require('cannon');
-import THR33Cube from './THR33Cube';
+import UNICube from './UNICube';
 
 const defaultOptions = {
     mass: 1,
@@ -8,7 +8,7 @@ const defaultOptions = {
     angularVelocity:  { x: 0, y: 0, z: 0 },
 };
 
-class THR33PhysCube extends THR33Cube {
+class UNIPhysCube extends UNICube {
   constructor(options={}) {
     super(options);
     options = {...defaultOptions, ...options};
@@ -41,9 +41,9 @@ class THR33PhysCube extends THR33Cube {
   }
 
   tick() {
-      this.el.position.copy(this.body.position);
-      this.el.quaternion.copy(this.body.quaternion);
+      this.mesh.position.copy(this.body.position);
+      this.mesh.quaternion.copy(this.body.quaternion);
   }
 }
 
-export default THR33PhysCube
+export default UNIPhysCube

@@ -1,6 +1,7 @@
 const THREE = require('three')
 
 const defaultOptions = {
+  components: {},
   size: 1,
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
@@ -9,7 +10,7 @@ const defaultOptions = {
   material: null,
 }
 
-class THR33Cube {
+class UNICube {
   constructor(options={}) {
     options = {...defaultOptions, ...options};
     let geometry = new THREE.BoxBufferGeometry(
@@ -33,8 +34,10 @@ class THR33Cube {
       options.scale.y,
       options.scale.z
     );
-    this.el = mesh;
+    this.mesh = mesh;
+    this.mesh.UNI = this;
+    this.components = options.components;
   }
 }
 
-export default THR33Cube
+export default UNICube

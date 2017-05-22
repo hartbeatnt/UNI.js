@@ -9,7 +9,7 @@ const defaultOptions = {
   zMaxOffset: 100,
 }
 
-class THR33PartSys {
+class UNIPartSys {
   constructor(options={}) {
     options = {...defaultOptions, ...options};
     console.log
@@ -24,11 +24,11 @@ class THR33PartSys {
         randOffset(options.zMaxOffset),
       ))
     }
-    this.el = new THREE.Points(
+    this.mesh = new THREE.Points(
       particles,
       options.material
     )
   }
 }
 
-export default THR33PartSys
+export default UNIPartSys

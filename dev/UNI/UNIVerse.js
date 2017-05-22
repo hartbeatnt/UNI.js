@@ -1,6 +1,7 @@
 const THREE = require('three')
 
 const defaultOptions = {
+  cameraType: 'Perspective',
   fov: 60,
   nearClip: 1,
   farClip: 1000,
@@ -15,7 +16,7 @@ const defaultOptions = {
   }
 }
 
-class THR33Scene {
+class UNIVerse {
   constructor(domNode,options={}) {
     options = {...defaultOptions, ...options}
     let w = domNode.offsetWidth;
@@ -24,7 +25,7 @@ class THR33Scene {
     this.renderer = new THREE.WebGLRenderer(options.renderParams);
     this.renderer.setSize(w, h);
     this.renderer.setClearColor(options.clearColor);
-    this.camera = new THREE.PerspectiveCamera(
+    this.camera = new THREE[`${options.cameraType}Camera`](
       options.fov, 
       options.aspect || w/h, 
       options.nearClip, 
@@ -53,7 +54,7 @@ class THR33Scene {
   }
 
   addEntity(entity) {
-    this.scene.add(entity.el);
+    this.scene.add(entity.mesh);
   }
 
   render() {
@@ -62,4 +63,4 @@ class THR33Scene {
 
 }
 
-export default THR33Scene;
+export default UNIVerse;
