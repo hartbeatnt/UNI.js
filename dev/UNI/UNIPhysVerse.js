@@ -28,6 +28,7 @@ class UNIPhysVerse extends UNIVerse {
     this.timeStep = props.timeStep;
   }
   addPhysEntity(entity) {
+    this.addEntity(entity);
     this.physEntities.push(entity);
     this.scene.add(entity.mesh);
     this.world.addBody(entity.body);

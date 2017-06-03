@@ -1,3 +1,4 @@
+import UNIEntity from './UNIEntity.js'
 import deepOverride from './_utils/deepOverride.js'
 const THREE = require('three')
 
@@ -17,12 +18,12 @@ const defaultprops = {
   }
 }
 
-class UNIVerse {
+class UNIVerse extends UNIEntity {
   constructor(domNode,props={}) {
+    super(props)
     props = deepOverride(defaultprops, props)
     let w = domNode.offsetWidth;
     let h = domNode.offsetHeight;
-    this.entities = [];
     this.renderer = new THREE.WebGLRenderer(props.renderParams);
     this.renderer.setSize(w, h);
     this.renderer.setClearColor(props.clearColor);
@@ -55,6 +56,7 @@ class UNIVerse {
   }
 
   addEntity(entity) {
+    this.addChild(entity);
     this.scene.add(entity.mesh);
   }
 

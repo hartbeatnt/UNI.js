@@ -13,6 +13,11 @@ class UNIEntity {
     this.systems = props.systems;
     this.children = props.children;
   }
+
+  addChild(entity) {
+    this.children.push(entity);
+  }
+
   tick () {
     for (let component in components) {
       component.tick();

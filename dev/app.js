@@ -27,7 +27,7 @@ universe.addEntity(partSys);
 universe.addEntity(cube);
 universe.addPhysEntity(physCube);
 
-console.log(physCube)
+console.log(universe)
 
 const animate = time => {
   if (time < 3000){
