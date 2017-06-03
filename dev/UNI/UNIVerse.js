@@ -1,3 +1,4 @@
+import deepOverride from './utils/deepOverride.js'
 const THREE = require('three')
 
 const defaultOptions = {
@@ -18,7 +19,7 @@ const defaultOptions = {
 
 class UNIVerse {
   constructor(domNode,options={}) {
-    options = {...defaultOptions, ...options}
+    options = deepOverride(defaultOptions, options)
     let w = domNode.offsetWidth;
     let h = domNode.offsetHeight;
     this.entities = [];

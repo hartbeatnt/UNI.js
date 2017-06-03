@@ -1,3 +1,5 @@
+import deepOverride from './utils/deepOverride.js'
+
 const CANNON = require('cannon');
 import UNICube from './UNICube';
 
@@ -11,7 +13,7 @@ const defaultOptions = {
 class UNIPhysCube extends UNICube {
   constructor(options={}) {
     super(options);
-    options = {...defaultOptions, ...options};
+    options = deepOverride(defaultOptions, options);
     const boxVector = new CANNON.Vec3(
         options.size,
         options.size,

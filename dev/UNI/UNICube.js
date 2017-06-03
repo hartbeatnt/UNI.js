@@ -1,3 +1,4 @@
+import deepOverride from './utils/deepOverride.js'
 const THREE = require('three')
 
 const defaultOptions = {
@@ -12,7 +13,7 @@ const defaultOptions = {
 
 class UNICube {
   constructor(options={}) {
-    options = {...defaultOptions, ...options};
+    options = deepOverride(defaultOptions, options);
     let geometry = new THREE.BoxBufferGeometry(
       options.size, options.size, options.size
     );

@@ -1,3 +1,5 @@
+import deepOverride from './utils/deepOverride.js'
+
 const defaultOptions = {
   components: {},
   systems: {},
@@ -6,7 +8,7 @@ const defaultOptions = {
 
 class UNIEntity {
   constructor(options) {
-    options = {...defaultOptions, ...options}
+    options = deepOverride(defaultOptions, options)
     this.components = options.components;
     this.systems = options.systems;
     this.children = options.children;
