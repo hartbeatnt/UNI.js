@@ -1,7 +1,7 @@
 const THREE = require('three');
 const CANNON = require('cannon');
 import Keyboard from './UNI/systems/Keyboard';
-import MouseDetect from './UNI/systems/MouseDetect';
+import CamStickAndThrottle from './UNI/systems/CamStickAndThrottle';
 import UNIPhysVerse from './UNI/UNIPhysVerse';
 import UNIPhysCube from './UNI/UNIPhysCube';
 import UNICube from './UNI/UNICube';
@@ -14,32 +14,17 @@ const sceneSettings = {
 } 
 
 const universe = new UNIPhysVerse(container, sceneSettings);
-const mouseDetect = new MouseDetect(universe);
+const camCtrl = new CamStickAndThrottle(universe.camera);
 
 const partSys = new UNIPartSys();
-const cube = new UNIPhysCube({
-  components: {
-    onMouseEnter: ()=>console.log('mouse enter cube'),
-    onMouseOver: ()=> console.log('mouse over cube'),
-    onMouseExit: ()=>console.log('mouse exit cube'),
-  },
-  position: {x:0,y:1.5,z:-1},
-  mass: 1,
-  size: 0.5,
-});
+
 
 
 universe.addEntity(partSys)
-universe.addPhysEntity(cube)
 const animate = time => {
   if (time < 3000){
     requestAnimationFrame(animate);
-    // const point = new UNICube({
-    //   size:0.05, 
-    //   color: 0xad43e1,
-    //   position: cube.mesh.position.clone()
-    // });
-    // universe.addEntity(point);
+
     universe.render(deltaTime);
   }
 }
