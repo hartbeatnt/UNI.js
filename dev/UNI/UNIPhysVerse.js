@@ -1,3 +1,4 @@
+import deepOverride from './utils/deepOverride.js'
 const CANNON = require('cannon')
 import UNIVerse from './UNIVerse'
 
@@ -13,8 +14,7 @@ const defaultOptions = {
 class UNIPhysVerse extends UNIVerse {
   constructor(domNode,options={}) {
     super(domNode, options);
-    console.log('sync or nah?')
-    options = {...defaultOptions, ...options}
+    options = deepOverride(defaultOptions, options)
     this.physEntities = options.physEntities
     this.world = new CANNON.World();
     this.world.gravity = new CANNON.Vec3(

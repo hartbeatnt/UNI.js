@@ -1,3 +1,5 @@
+import deepOverride from './utils/deepOverride.js'
+
 const THREE = require('three')
 
 const defaultOptions = {
@@ -11,7 +13,7 @@ const defaultOptions = {
 
 class UNIPartSys {
   constructor(options={}) {
-    options = {...defaultOptions, ...options};
+    options = deepOverride(defaultOptions, options);
     console.log
     const particles = options.geometry;
     const randOffset = max => {
