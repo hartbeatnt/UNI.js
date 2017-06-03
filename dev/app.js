@@ -14,7 +14,6 @@ const sceneSettings = {
 } 
 
 const universe = new UNIPhysVerse(container, sceneSettings);
-const camCtrl = new CamStickAndThrottle(universe.camera);
 
 const partSys = new UNIPartSys();
 

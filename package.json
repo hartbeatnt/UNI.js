@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hartbeatnt/particle-playground.git"
+    "url": "git+https://github.com/hartbeatnt/UNI.js.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hartbeatnt/particle-playground/issues"
+    "url": "https://github.com/hartbeatnt/UNI.js.git/issues"
   },
-  "homepage": "https://github.com/hartbeatnt/particle-playground#readme",
+  "homepage": "https://github.com/hartbeatnt/UNI.js.git#readme",
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
