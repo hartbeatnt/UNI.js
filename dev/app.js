@@ -38,4 +38,3 @@ const animate = time => {
 let oldTime = performance.now();
 let deltaTime = performance.now();
 animate(oldTime)
->>>>>>> rambda

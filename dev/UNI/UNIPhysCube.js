@@ -3,7 +3,7 @@ import deepOverride from './utils/deepOverride.js'
 const CANNON = require('cannon');
 import UNICube from './UNICube';
 
-const defaultOptions = {
+const defaultprops = {
     mass: 1,
     angularDamping: 0,
     velocity: { x: 0, y: 0, z: 0 },
@@ -11,35 +11,35 @@ const defaultOptions = {
 };
 
 class UNIPhysCube extends UNICube {
-  constructor(options={}) {
-    super(options);
-    options = deepOverride(defaultOptions, options);
+  constructor(props={}) {
+    super(props);
+    props = deepOverride(defaultprops, props);
     const boxVector = new CANNON.Vec3(
-        options.size,
-        options.size,
-        options.size
+        props.size,
+        props.size,
+        props.size
     );
     const shape = new CANNON.Box(boxVector);
     this.body = new CANNON.Body({
-        mass: options.mass,
+        mass: props.mass,
     });
     this.body.addShape(shape);
     this.body.position = new CANNON.Vec3(
-      options.position.x,
-      options.position.y,
-      options.position.z        
+      props.position.x,
+      props.position.y,
+      props.position.z        
     );
     this.body.velocity = new CANNON.Vec3(
-        options.velocity.x,
-        options.velocity.y,
-        options.velocity.z,
+        props.velocity.x,
+        props.velocity.y,
+        props.velocity.z,
     );
     this.body.velocity = new CANNON.Vec3(
-        options.angularVelocity.x,
-        options.angularVelocity.y,
-        options.angularVelocity.z,
+        props.angularVelocity.x,
+        props.angularVelocity.y,
+        props.angularVelocity.z,
     );
-    this.body.angularDamping = options.angularDamping;
+    this.body.angularDamping = props.angularDamping;
   }
 
   tick() {

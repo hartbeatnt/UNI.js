@@ -1,8 +1,8 @@
 import deepOverride from './utils/deepOverride.js'
+import UNIEntity from './UNIEntity'
 const THREE = require('three')
 
-const defaultOptions = {
-  components: {},
+const defaultprops = {
   size: 1,
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
@@ -11,33 +11,33 @@ const defaultOptions = {
   material: null,
 }
 
-class UNICube {
-  constructor(options={}) {
-    options = deepOverride(defaultOptions, options);
+class UNICube extends UNIEntity {
+  constructor(props={}) {
+    super(props)
+    props = deepOverride(defaultprops, props);
     let geometry = new THREE.BoxBufferGeometry(
-      options.size, options.size, options.size
+      props.size, props.size, props.size
     );
-    let material = options.material
-      || new THREE.MeshBasicMaterial({color: options.color});
+    let material = props.material
+      || new THREE.MeshBasicMaterial({color: props.color});
     let mesh = new THREE.Mesh(geometry, material);
     mesh.position.set(
-      options.position.x,
-      options.position.y,
-      options.position.z
+      props.position.x,
+      props.position.y,
+      props.position.z
     );
     mesh.rotation.set(
-      options.rotation.x,
-      options.rotation.y,
-      options.rotation.z
+      props.rotation.x,
+      props.rotation.y,
+      props.rotation.z
     );
     mesh.scale.set(
-      options.scale.x,
-      options.scale.y,
-      options.scale.z
+      props.scale.x,
+      props.scale.y,
+      props.scale.z
     );
     this.mesh = mesh;
     this.mesh.UNI = this;
-    this.components = options.components;
   }
 }
 

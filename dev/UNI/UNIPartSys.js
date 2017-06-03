@@ -2,7 +2,7 @@ import deepOverride from './utils/deepOverride.js'
 
 const THREE = require('three')
 
-const defaultOptions = {
+const defaultprops = {
   particleCount: 1500,
   geometry: new THREE.Geometry(),
   material: new THREE.PointsMaterial(),
@@ -12,23 +12,23 @@ const defaultOptions = {
 }
 
 class UNIPartSys {
-  constructor(options={}) {
-    options = deepOverride(defaultOptions, options);
+  constructor(props={}) {
+    props = deepOverride(defaultprops, props);
     console.log
-    const particles = options.geometry;
+    const particles = props.geometry;
     const randOffset = max => {
       return Math.random() * 2 * max - max
     }
-    for (let i = 0; i < options.particleCount; i++) {
+    for (let i = 0; i < props.particleCount; i++) {
       particles.vertices.push(new THREE.Vector3(
-        randOffset(options.xMaxOffset),
-        randOffset(options.yMaxOffset),
-        randOffset(options.zMaxOffset),
+        randOffset(props.xMaxOffset),
+        randOffset(props.yMaxOffset),
+        randOffset(props.zMaxOffset),
       ))
     }
     this.mesh = new THREE.Points(
       particles,
-      options.material
+      props.material
     )
   }
 }

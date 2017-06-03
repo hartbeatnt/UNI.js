@@ -1,7 +1,7 @@
 import deepOverride from './utils/deepOverride.js'
 const THREE = require('three')
 
-const defaultOptions = {
+const defaultprops = {
   cameraType: 'Perspective',
   fov: 60,
   nearClip: 1,
@@ -18,29 +18,29 @@ const defaultOptions = {
 }
 
 class UNIVerse {
-  constructor(domNode,options={}) {
-    options = deepOverride(defaultOptions, options)
+  constructor(domNode,props={}) {
+    props = deepOverride(defaultprops, props)
     let w = domNode.offsetWidth;
     let h = domNode.offsetHeight;
     this.entities = [];
-    this.renderer = new THREE.WebGLRenderer(options.renderParams);
+    this.renderer = new THREE.WebGLRenderer(props.renderParams);
     this.renderer.setSize(w, h);
-    this.renderer.setClearColor(options.clearColor);
-    this.camera = new THREE[`${options.cameraType}Camera`](
-      options.fov, 
-      options.aspect || w/h, 
-      options.nearClip, 
-      options.farClip
+    this.renderer.setClearColor(props.clearColor);
+    this.camera = new THREE[`${props.cameraType}Camera`](
+      props.fov, 
+      props.aspect || w/h, 
+      props.nearClip, 
+      props.farClip
     );
-    this.camera.position.x = options.position.x;
-    this.camera.position.y = options.position.y;
-    this.camera.position.z = options.position.z;
+    this.camera.position.x = props.position.x;
+    this.camera.position.y = props.position.y;
+    this.camera.position.z = props.position.z;
     
     this.scene = new THREE.Scene();
     
     window.addEventListener('resize',()=>{
-      options.aspect
-        ? this.setSize(domNode, options.aspect)
+      props.aspect
+        ? this.setSize(domNode, props.aspect)
         : this.setSize(domNode);
     })
     domNode.appendChild(this.renderer.domElement);

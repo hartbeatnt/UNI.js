@@ -1,17 +1,17 @@
 import deepOverride from './utils/deepOverride.js'
 
-const defaultOptions = {
+const defaultprops = {
   components: {},
   systems: {},
   children: [],
 }
 
 class UNIEntity {
-  constructor(options) {
-    options = deepOverride(defaultOptions, options)
-    this.components = options.components;
-    this.systems = options.systems;
-    this.children = options.children;
+  constructor(props={}) {
+    props = deepOverride(defaultprops, props)
+    this.components = props.components;
+    this.systems = props.systems;
+    this.children = props.children;
   }
   tick () {
     for (let component in components) {
