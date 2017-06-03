@@ -1,4 +1,4 @@
-import deepOverride from './utils/deepOverride.js'
+import deepOverride from './_utils/deepOverride.js'
 
 const THREE = require('three')
 
