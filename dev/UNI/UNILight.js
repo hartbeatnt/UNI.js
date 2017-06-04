@@ -32,7 +32,7 @@ class UNILight extends UNIEntity {
     super(props)
     if (!isNaN(props)) props = {color:props}
     props = deepOverride(defaultProps, props);
-    let lightType = LIGHT_TYPES[props.type.toLowerCase()];
+    const lightType = LIGHT_TYPES[props.type.toLowerCase()];
     const light = new THREE[`${lightType}Light`]();
     if (lightType === "Point" || lightType === "Spot") {
       if (lightType === "Spot") {
@@ -55,7 +55,7 @@ class UNILight extends UNIEntity {
     // light.castShadow = props.castShadow;
     let { x, y, z } = props.position;
     light.position.set(x, y, z);
-    this.mesh = light;
+    this.obj3d = light;
   }
 }
 

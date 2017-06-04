@@ -17,12 +17,12 @@ class UNICube extends UNIEntity {
   constructor(props={}) {
     super(props)
     props = deepOverride(defaultProps, props);
-    let geometry = new THREE.BoxBufferGeometry(
+    const geometry = new THREE.BoxBufferGeometry(
       props.size, props.size, props.size
     );
-    let material = props.material
+    const material = props.material
       || new THREE.MeshBasicMaterial({color: props.color});
-    let mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(geometry, material);
     mesh.castShadow = props.castShadow;
     mesh.receiveShadow = props.receiveShadow;
     mesh.position.set(
@@ -40,8 +40,8 @@ class UNICube extends UNIEntity {
       props.scale.y,
       props.scale.z
     );
-    this.mesh = mesh;
-    this.mesh.UNI = this;
+    this.obj3d = mesh;
+    this.obj3d.UNI = this;
   }
 }
 

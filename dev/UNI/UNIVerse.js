@@ -14,7 +14,7 @@ const defaultProps = {
   },
   clearColor: '#ffffff',
   physicallyCorrectLights: true,
-  shadowMapEnabled: true,
+  shadowMap: { Enabled: true },
   renderParams: {
     antialias: true,
   }
@@ -28,8 +28,8 @@ class UNIVerse extends UNIEntity {
     let h = domNode.offsetHeight;
     this.renderer = new THREE.WebGLRenderer(props.renderParams);
     this.renderer.setSize(w, h);
-    this.renderer.setClearColor(new THREE.Color(props.clearColor, 1.0));
-    this.renderer.shadowMapEnabled = props.shadowMapEnabled;
+    this.renderer.setClearColor(props.clearColor, 1.0);
+    this.renderer.shadowMap = props.shadowMap;
     this.renderer.physicallyCorrectLights = props.physicallyCorrectLights;
     this.camera = new THREE[`${props.cameraType}Camera`](
       props.fov, 
@@ -61,7 +61,7 @@ class UNIVerse extends UNIEntity {
 
   addEntity(entity) {
     this.addChild(entity);
-    this.scene.add(entity.mesh);
+    this.scene.add(entity.obj3d);
   }
 
   render() {

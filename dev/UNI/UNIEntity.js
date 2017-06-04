@@ -1,4 +1,5 @@
 import deepOverride from './_utils/deepOverride.js'
+const THREE = require('three')
 
 const defaultProps = {
   components: {},

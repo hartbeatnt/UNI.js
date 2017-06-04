@@ -43,8 +43,8 @@ class UNIPhysCube extends UNICube {
   }
 
   tick() {
-      this.mesh.position.copy(this.body.position);
-      this.mesh.quaternion.copy(this.body.quaternion);
+      this.obj3d.position.copy(this.body.position);
+      this.obj3d.quaternion.copy(this.body.quaternion);
   }
 }
 

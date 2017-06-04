@@ -3,11 +3,10 @@ const CANNON = require('cannon');
 import Keyboard from './UNI/systems/Keyboard';
 
 import UNIVerse from './UNI/UNIVerse';
-import UNIPhysVerse from './UNI/UNIPhysVerse';
-import UNIPhysCube from './UNI/UNIPhysCube';
 import UNICube from './UNI/UNICube';
 import UNIPartSys from './UNI/UNIPartSys';
 import UNILight from './UNI/UNILight';
+import UNIMesh from './UNI/UNIMesh';
 
 const container = document.querySelector('#container')
 const sceneSettings = { 
@@ -21,10 +20,11 @@ const cube1 = new UNICube({
   position:{x:-1},
   material: new THREE.MeshLambertMaterial({ color:0x2194ce }),
 });
-const cube2 = new UNICube({
-  position:{x:1},
-  material: new THREE.MeshBasicMaterial({ color:0x2194ce }),
-});
+const cube2 = new UNIMesh();
+// const cube2 = new UNICube({
+//   position:{x:1},
+//   material: new THREE.MeshBasicMaterial({ color:0x2194ce }),
+// });
 
 const floor = new UNICube({
   position: { y: -4, z: -2.5 },
@@ -60,7 +60,7 @@ const animate = time => {
 }
 
 const moveLightZ = (light,amt) => {
-  light.mesh.position.z+=.01*amt
+  light.obj3d.position.z+=.01*amt
 }
 
 let oldTime = performance.now();

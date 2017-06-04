@@ -26,7 +26,7 @@ class UNIPartSys {
         randOffset(props.zMaxOffset),
       ))
     }
-    this.mesh = new THREE.Points(
+    this.obj3d = new THREE.Points(
       particles,
       props.material
     )

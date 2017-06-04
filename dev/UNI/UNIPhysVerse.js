@@ -30,7 +30,7 @@ class UNIPhysVerse extends UNIVerse {
   addPhysEntity(entity) {
     this.addEntity(entity);
     this.physEntities.push(entity);
-    this.scene.add(entity.mesh);
+    this.scene.add(entity.obj3d);
     this.world.addBody(entity.body);
   }
   updatePhysics() {
