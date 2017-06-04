@@ -14,6 +14,7 @@ const defaultProps = {
   },
   clearColor: '#ffffff',
   physicallyCorrectLights: true,
+  shadowMapEnabled: true,
   renderParams: {
     antialias: true,
   }
@@ -28,6 +29,7 @@ class UNIVerse extends UNIEntity {
     this.renderer = new THREE.WebGLRenderer(props.renderParams);
     this.renderer.setSize(w, h);
     this.renderer.setClearColor(new THREE.Color(props.clearColor, 1.0));
+    this.renderer.shadowMapEnabled = props.shadowMapEnabled;
     this.renderer.physicallyCorrectLights = props.physicallyCorrectLights;
     this.camera = new THREE[`${props.cameraType}Camera`](
       props.fov, 

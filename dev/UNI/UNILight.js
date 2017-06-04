@@ -16,7 +16,7 @@ const defaultProps = {
   type: "Ambient",
   color: 0xFFFFFF,
   groundColor: 0xFFFFFF,
-  // castShadow: true,
+  castShadow: true,
   skyColor: null,
   intensity: 1,
   distance: 0,
@@ -30,11 +30,8 @@ const defaultProps = {
 class UNILight extends UNIEntity {
   constructor(props={}) {
     super(props)
-    console.log(props)
     if (!isNaN(props)) props = {color:props}
-    console.log(props)
     props = deepOverride(defaultProps, props);
-    console.log(props)
     let lightType = LIGHT_TYPES[props.type.toLowerCase()];
     const light = new THREE[`${lightType}Light`]();
     if (lightType === "Point" || lightType === "Spot") {
@@ -43,6 +40,7 @@ class UNILight extends UNIEntity {
         light.penumbra = props.penumbra;
       }
       light.distance = props.distance;
+      light.castShadow = props.castShadow;
       light.decay = props.decay;
     }
     if (lightType === "RectArea") {

@@ -7,6 +7,8 @@ const defaultProps = {
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
   scale:    { x: 1, y: 1, z: 1 },
+  castShadow: true,
+  receiveShadow: true,
   color: 0xD3D3D3,
   material: null,
 }
@@ -21,6 +23,8 @@ class UNICube extends UNIEntity {
     let material = props.material
       || new THREE.MeshBasicMaterial({color: props.color});
     let mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = props.castShadow;
+    mesh.receiveShadow = props.receiveShadow;
     mesh.position.set(
       props.position.x,
       props.position.y,
