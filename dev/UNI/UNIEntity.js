@@ -1,6 +1,6 @@
 import deepOverride from './_utils/deepOverride.js'
 
-const defaultprops = {
+const defaultProps = {
   components: {},
   systems: {},
   children: [],
@@ -8,7 +8,7 @@ const defaultprops = {
 
 class UNIEntity {
   constructor(props={}) {
-    props = deepOverride(defaultprops, props)
+    props = deepOverride(defaultProps, props)
     this.components = props.components;
     this.systems = props.systems;
     this.children = props.children;

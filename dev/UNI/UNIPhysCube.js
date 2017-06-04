@@ -3,7 +3,7 @@ import deepOverride from './_utils/deepOverride.js'
 const CANNON = require('cannon');
 import UNICube from './UNICube';
 
-const defaultprops = {
+const defaultProps = {
     mass: 1,
     angularDamping: 0,
     velocity: { x: 0, y: 0, z: 0 },
@@ -13,7 +13,7 @@ const defaultprops = {
 class UNIPhysCube extends UNICube {
   constructor(props={}) {
     super(props);
-    props = deepOverride(defaultprops, props);
+    props = deepOverride(defaultProps, props);
     const boxVector = new CANNON.Vec3(
         props.size,
         props.size,

@@ -2,7 +2,7 @@ import deepOverride from './_utils/deepOverride.js'
 const CANNON = require('cannon')
 import UNIVerse from './UNIVerse'
 
-const defaultprops = {
+const defaultProps = {
   physEntities: [],
   gravity: { x: 0, y: -9.8, z: 0 },
   broadphase: new CANNON.NaiveBroadphase(),
@@ -14,7 +14,7 @@ const defaultprops = {
 class UNIPhysVerse extends UNIVerse {
   constructor(domNode,props={}) {
     super(domNode, props);
-    props = deepOverride(defaultprops, props)
+    props = deepOverride(defaultProps, props)
     this.physEntities = props.physEntities
     this.world = new CANNON.World();
     this.world.gravity = new CANNON.Vec3(

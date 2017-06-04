@@ -2,7 +2,7 @@ import deepOverride from './_utils/deepOverride.js'
 import UNIEntity from './UNIEntity'
 const THREE = require('three')
 
-const defaultprops = {
+const defaultProps = {
   size: 1,
   position: { x: 0, y: 0, z: 0 },
   rotation: { x: 0, y: 0, z: 0 },
@@ -14,7 +14,7 @@ const defaultprops = {
 class UNICube extends UNIEntity {
   constructor(props={}) {
     super(props)
-    props = deepOverride(defaultprops, props);
+    props = deepOverride(defaultProps, props);
     let geometry = new THREE.BoxBufferGeometry(
       props.size, props.size, props.size
     );
