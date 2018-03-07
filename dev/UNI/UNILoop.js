@@ -18,7 +18,7 @@ export default (callbacks={}, options={}) => {
   const outputs = new Map();
   const onCompletes = new Map();
   const onFrameRateDrops = new Map();
-  const Panics = new Map();
+  const panics = new Map();
   
   let animationFrame = null;
   let running = false;
