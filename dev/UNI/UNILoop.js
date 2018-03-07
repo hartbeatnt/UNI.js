@@ -4,6 +4,7 @@ export default (callbacks={}, options={}) => {
   const step = 1000 / fps;
   const maxUpdates = options.maxUpdates || 240;
   const resetOnPanic = options.resetOnPanic || true;
+  const decayParam = options.decayParam || 0.25;
 
   const onBegin = callbacks.onBegin || fn;
   const onComplete = callbacks.onComplete || fn;
@@ -20,34 +21,62 @@ export default (callbacks={}, options={}) => {
   
   let animationFrame = null;
   let running = false;
-  let prevTime = 0;
+  let prevTime = performance.now();
   let deltaTime = 0;
+  let updateSteps = 0;
+
+  let avgFps = fps;
+  let framesThisSecond = 0;
+  let lastFpsUpdate = 0;
 
   let loop = (time=performance.now()) => {
     animationFrame = requestAnimationFrame(loop);
-
-    let updateSteps = 0;
     deltaTime += time - prevTime;
-    prevTime = time;
-    running = true;
-
-    onBegin(time, deltaTime);
+    if (deltaTime < step) {
+      return animationFrame;
+    }
     
+    running = true;
+    runCallBacks(onBegins, time, deltaTime, avgFps);
+    runCallBacks(inputs, time, deltaTime, avgFps);
+
+    if (time > lastFpsUpdate + 1000) {
+      avgFps = decayParam * framesThisSecond + (1 - decayParam) * avgFps;
+      lastFpsUpdate = time;
+      framesThisSecond = 0;
+    }
+    
+    framesThisSecond++;
+    updateSteps = 0;
+    prevTime = time;
+
     while(deltaTime >= step) {
-      update(step);
+      runCallBacks(updates, time, step, avgFps);
+      updateSteps++;
       deltaTime -= step;
 
-      if(++updateSteps >= maxUpdates) {
-        panic();
+      if(updateSteps >= maxUpdates) {
+        runCallBacks(panic, time, deltaTime, avgFps);
         if(resetOnPanic) deltaTime = 0;
         break;
       }
     }
-    
-    draw(deltaTime / time);
-    
-    return onComplete(animationFrame);
+
+    runCallBacks(outputs, time, deltaTime, avgFps);
+    runCallBacks(onCompletes, time, deltaTime, avgFps);
+    return animationFrame;
+
   };
+
+  loop.add = {
+    onBegin: fn => onBegins.set(fn, true),
+    input: fn => inputs.set(fn, true),
+    update: fn => updates.set(fn, true),
+    output: fn => outputs.set(fn, true),
+    onComplete: fn => onCompletes.set(fn, true),
+    onFrameRateDrop: fn => onFrameRateDrops.set(fn, true),
+    Panic: fn => Panics.set(fn, true),
+  }
 
   loop.stop = () => {
     cancelAnimationFrame(animationFrame);
@@ -65,4 +94,8 @@ export default (callbacks={}, options={}) => {
   }
 
   return loop;
+}
+
+function runCallBacks(map, ...args) {
+  map.forEach((active, cb) => active && cb(...args));
 }
