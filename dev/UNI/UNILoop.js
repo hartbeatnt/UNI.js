@@ -10,6 +10,13 @@ export default (callbacks={}, options={}) => {
   const update = callbacks.update || fn;
   const draw = callbacks.draw || fn;
   const panic = callbacks.panic || fn;
+
+  const onBegins = new Map();
+  const inputs = new Map();
+  const updates = new Map();
+  const outputs = new Map();
+  const onCompletes = new Map();
+  const panics = new Map();
   
   let animationFrame = null;
   let running = false;
