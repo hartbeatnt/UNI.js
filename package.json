@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "cannon": "^0.6.2",
+    "npm": "^5.7.1",
     "ramda": "^0.24.1",
     "three": "^0.85.2"
   }
