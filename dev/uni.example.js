@@ -56,19 +56,22 @@ export default () => {
 
 
   const keyboard = new Keyboard('ArrowUp','ArrowDown')
-  const animate = time => {
-      requestAnimationFrame(animate);
+  const animate = deltaTime => {
       keyboard.ArrowUp && moveLightZ(ptLight, 1);
       keyboard.ArrowDown && moveLightZ(ptLight, -1);
-      universe.render(deltaTime);
   }
-
+  
   const moveLightZ = (light,amt) => {
     light.mesh.position.z+=.01*amt
   }
 
-  let oldTime = performance.now();
-  let deltaTime = performance.now();
-  animate(oldTime)
+  const draw = deltaTime => {
+    universe.render(deltaTime);
+  }
+
+  const loop = UNILoop();
+  loop.add.update(animate);
+  loop.add.output(draw);
+  loop.run();
 
 }
