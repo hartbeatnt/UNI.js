@@ -1,12 +1,12 @@
-import Keyboard from './UNI/systems/Keyboard';
+import Keyboard from './systems/Keyboard';
 
-import UNIVerse from './UNI/UNIVerse';
-import UNIPhysVerse from './UNI/UNIPhysVerse';
-import UNIPhysCube from './UNI/UNIPhysCube';
-import UNICube from './UNI/UNICube';
-import UNIPartSys from './UNI/UNIPartSys';
-import UNILight from './UNI/UNILight';
-import UNILoop from './UNI/UNILoop';
+import UNIVerse from './UNIVerse';
+import UNIPhysVerse from './UNIPhysVerse';
+import UNIPhysCube from './UNIPhysCube';
+import UNICube from './UNICube';
+import UNIPartSys from './UNIPartSys';
+import UNILight from './UNILight';
+import UNILoop from './UNILoop';
 
 export default () => {
 

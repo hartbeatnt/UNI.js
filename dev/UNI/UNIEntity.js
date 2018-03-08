@@ -1,8 +1,8 @@
 import deepOverride from './_utils/deepOverride.js'
 
 const defaultProps = {
-  components: {},
-  systems: {},
+  components: [],
+  systems: [],
   children: [],
 }
 
@@ -19,15 +19,15 @@ class UNIEntity {
   }
 
   tick () {
-    for (let component in components) {
-      component.tick();
-    }
-    for (let system in systems) {
-      system.tick();
-    }
-    for (let child in children) {
-      child.tick();
-    }
+    this.components.forEach(component => {
+      component.tick && component.tick();
+    });
+    this.systems.forEach(system => {
+      system.tick && system.tick();
+    });
+    this.children.forEach(child => {
+      child.tick && child.tick();
+    });
   }
 }
 

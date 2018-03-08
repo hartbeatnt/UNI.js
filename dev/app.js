@@ -1,3 +1,3 @@
-import runExample from "./uni.example.js";
+import runExample from "./platform.example.js";
 
 runExample();
