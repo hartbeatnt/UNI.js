@@ -1,6 +1,6 @@
 class Keyboard {
-  constructor() {
-    [...arguments].forEach(key => this.addKey(key))
+  constructor(...args) {
+    args.forEach(key => this.addKey(key))
 
     window.addEventListener('keydown', e => {
       if (e.key in this) this[e.key] = true;
@@ -9,13 +9,13 @@ class Keyboard {
       if (e.key in this) this[e.key] = false;  
     })
   }
-  addKey() {
-    [...arguments].forEach(key => {
+  addKey(...args) {
+    args.forEach(key => {
       if (typeof key === 'string') this[key] = false
     })    
   }
   addKeys() {
-    this.addKey.apply(this, arguments)
+    this.addKey.call(this, arguments)
   }
 }
 

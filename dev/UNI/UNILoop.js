@@ -1,6 +1,7 @@
 export default (callbacks={}, options={}) => {
   const fn = () => {};
   const fps = options.fps || 30;
+  const minFps = options.minFps || fps - 10;
   const step = 1000 / fps;
   const maxUpdates = options.maxUpdates || 240;
   const resetOnPanic = options.resetOnPanic || true;
@@ -33,18 +34,26 @@ export default (callbacks={}, options={}) => {
   let loop = (time=performance.now()) => {
     animationFrame = requestAnimationFrame(loop);
     deltaTime += time - prevTime;
+
+    running = true;
+
     if (deltaTime < step) {
+      // console.log('early. Dipping:',deltaTime, step)
       return animationFrame;
     }
-    
-    running = true;
-    runCallBacks(onBegins, time, deltaTime, avgFps);
-    runCallBacks(inputs, time, deltaTime, avgFps);
 
+    runCallBacks(inputs, time, deltaTime, avgFps);
+    runCallBacks(onBegins, time, deltaTime, avgFps);
+    
     if (time > lastFpsUpdate + 1000) {
       avgFps = decayParam * framesThisSecond + (1 - decayParam) * avgFps;
       lastFpsUpdate = time;
       framesThisSecond = 0;
+    }
+    console.log(avgFps);
+  
+    if (avgFps < minFps) {
+      runCallBacks(onFrameRateDrops, time, deltaTime, avgFps);
     }
     
     framesThisSecond++;
@@ -66,7 +75,6 @@ export default (callbacks={}, options={}) => {
     runCallBacks(outputs, time, deltaTime, avgFps);
     runCallBacks(onCompletes, time, deltaTime, avgFps);
     return animationFrame;
-
   };
 
   loop.add = {

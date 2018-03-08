@@ -56,9 +56,9 @@ export default () => {
 
 
   const keyboard = new Keyboard('ArrowUp','ArrowDown')
-  const animate = deltaTime => {
-      keyboard.ArrowUp && moveLightZ(ptLight, 1);
-      keyboard.ArrowDown && moveLightZ(ptLight, -1);
+  const animate = (time, deltaTime, avgFps) => {
+    keyboard.ArrowUp && moveLightZ(ptLight, 1);
+    keyboard.ArrowDown && moveLightZ(ptLight, -1);
   }
   
   const moveLightZ = (light,amt) => {
