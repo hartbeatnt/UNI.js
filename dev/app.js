@@ -1,3 +1,3 @@
-import runExample from "./platform.example.js";
+import runExample from "./platform";
 
 runExample();

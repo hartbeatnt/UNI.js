@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -17,11 +18,20 @@ module.exports = {
         loader: 'babel-loader',
         include: path.resolve(__dirname, "dev"),
         query: {
-          presets: ['es2015', 'stage-0']
+          plugins: ["transform-object-rest-spread"]
         }
       }
     ]
   },
+  resolve: {
+    modules: ["node_modules", "client"],
+    mainFiles: ["_index", "index"]
+  },
+  plugins: [
+		new webpack.ProvidePlugin({
+      THREE: 'three',
+    }),
+	],
   devtool: 'source-map',
   watch: true,
 };

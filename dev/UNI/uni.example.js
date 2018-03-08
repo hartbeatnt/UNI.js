@@ -6,7 +6,7 @@ import UNIPhysCube from './UNIPhysCube';
 import UNICube from './UNICube';
 import UNIPartSys from './UNIPartSys';
 import UNILight from './UNILight';
-import UNILoop from './UNILoop';
+import UNILoop from '../Loop';
 
 export default () => {
 
@@ -47,12 +47,12 @@ export default () => {
 
 
   //  TODO: allow addEntity to add multiple entities in a row
-  universe.addEntity(partSys);
-  universe.addEntity(ambLight);
-  universe.addEntity(ptLight);
-  universe.addEntity(cube1);
-  universe.addEntity(cube2);
-  universe.addEntity(floor);
+  universe.addPhysEntity(partSys);
+  universe.addPhysEntity(ambLight);
+  universe.addPhysEntity(ptLight);
+  universe.addPhysEntity(cube1);
+  universe.addPhysEntity(cube2);
+  universe.addPhysEntity(floor);
 
 
   const keyboard = new Keyboard('ArrowUp','ArrowDown')

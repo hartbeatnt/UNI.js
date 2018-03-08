@@ -1,11 +1,11 @@
-import Keyboard from './UNI/systems/Keyboard';
+import Keyboard from '../UNI/systems/Keyboard';
 
-import UNIVerse from './UNI/UNIVerse';
-import UNIPhysVerse from './UNI/UNIPhysVerse';
-import UNIPhysCube from './UNI/UNIPhysCube';
-import UNIPartSys from './UNI/UNIPartSys';
-import UNILight from './UNI/UNILight';
-import UNILoop from './UNI/UNILoop';
+import UNIVerse from '../UNI/UNIVerse';
+import UNIPhysVerse from '../UNI/UNIPhysVerse';
+import UNIPhysCube from '../UNI/UNIPhysCube';
+import UNIPartSys from '../UNI/UNIPartSys';
+import UNILight from '../UNI/UNILight';
+import UNILoop from '../UNILoop';
 
 export default () => {
 
@@ -21,21 +21,22 @@ export default () => {
 
   const partSys = new UNIPartSys();
   const cube1 = new UNIPhysCube({
+    rotation: {x:0, y:0, z:0},
     position:{x:-1},
     size: 1,
-    angularVelocity:  { x: 0, y: 0, z: 1 },
     material: new THREE.MeshLambertMaterial({ color:0x2194ce }),
   });
   const cube2 = new UNIPhysCube({
+    rotation: {x:0, y:0, z:0},
     position:{x:1},
-    angularVelocity:  { x: 0, y: 0, z: 1 },
-    material: new THREE.MeshBasicMaterial({ color:0x2194ce }),
+    material: new THREE.MeshLambertMaterial({ color:0x2194ce }),
   });
 
   const floor = new UNIPhysCube({
+    rotation: {x:0, y:0, z:0},
     position: { y: -1, z: -2.5 },
-    size: 5,
-    scale: { x: 1, y: .01, z: 1 },
+    scale: { x: 5, y: .01, z: 5 },
+    mass: 0,
     material: new THREE.MeshLambertMaterial({ color:0x2194ce }),
   })
 
@@ -53,9 +54,9 @@ export default () => {
   universe.addEntity(partSys);
   universe.addEntity(ambLight);
   universe.addEntity(ptLight);
-  universe.addEntity(cube1);
-  universe.addEntity(cube2);
-  universe.addEntity(floor);
+  universe.addPhysEntity(cube1);
+  universe.addPhysEntity(cube2);
+  universe.addPhysEntity(floor);
 
 
   const keyboard = new Keyboard('ArrowUp','ArrowDown')
@@ -68,8 +69,8 @@ export default () => {
     light.mesh.position.z+=.01*amt
   }
 
-  const draw = deltaTime => {
-    universe.render(deltaTime);
+  const draw = (time, deltaTime) => {
+    universe.render(time, deltaTime);
   }
 
   const loop = UNILoop();

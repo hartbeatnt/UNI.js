@@ -4,7 +4,7 @@ import UNIVerse from './UNIVerse'
 
 const defaultProps = {
   physEntities: [],
-  gravity: { x: 0, y: -9.8, z: 0 },
+  gravity: { x: 0, y:-9.8, z: 0 },
   broadphase: new CANNON.NaiveBroadphase(),
   solverIterations: 10,
   interpolation: false,
@@ -33,15 +33,15 @@ class UNIPhysVerse extends UNIVerse {
     this.scene.add(entity.mesh);
     this.world.addBody(entity.body);
   }
-  updatePhysics() {
-    this.world.step(this.timeStep);
+  updatePhysics(time, deltaTime) {
+    this.world.step(deltaTime / 1000);
   }
 
-  render() {
-    this.updatePhysics();
+  render(time, deltaTime) {
     this.physEntities.forEach(entity=>{
-      entity.tick();
+      entity.tick(time, deltaTime);
     })
+    this.updatePhysics(time, deltaTime);
     this.renderer.render(this.scene, this.camera);
   }
 
